@@ -17,7 +17,7 @@ public static class ActorSystemConfig
 
     public static ActorSystem CreateSystem(string systemName, string hoconConfig, ILogger? logger = null)
     {
-        if(logger == null)
+        if (logger == null)
         {
             logger = new LoggerConfiguration()
                 .WriteTo.Console()
