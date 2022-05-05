@@ -12,19 +12,19 @@ public abstract class SupervisorBase : ReceiveActor
 
     protected ILoggingAdapter Log { get; } = Context.GetLogger();
 
-    protected  ISet<IActorRef> SupervisedActorRefs { get; } = new HashSet<IActorRef>();
+    protected ISet<IActorRef> SupervisedActorRefs { get; } = new HashSet<IActorRef>();
 
     public SupervisorBase()
     {
         Receive<AggregatedReply<Message>>(OnReceiveAny);
     }
-    
+
     private void OnReceiveAny(AggregatedReply<Message> msg)
     {
         if (_awaitingMessages.TryRemove(msg.RequestId, out AwaitingMessage? awaitingMsg))
         {
             AggregatedReply<Message> reply = msg with { RequestId = awaitingMsg.RequestId };
-            
+
             awaitingMsg.Sender.Tell(reply);
             return;
         }

@@ -7,14 +7,14 @@ namespace Hafnia.Shared.Actors;
 
 public class AggregatorActor<T> : ReceiveActor where T : Message
 {
-    private T _originalMessage;
-    private IActorRef _originalSender;
-    private ISet<IActorRef> _refs;
+    private T? _originalMessage;
+    private IActorRef? _originalSender;
+    private readonly ISet<IActorRef> _refs;
 
     public AggregatorActor(ISet<IActorRef> refs)
     {
         _refs = refs;
-        
+
         Context.SetReceiveTimeout(TimeSpan.FromSeconds(30));
         Receive<T>(x =>
         {
@@ -28,7 +28,7 @@ public class AggregatorActor<T> : ReceiveActor where T : Message
     private void Aggregating()
     {
         List<T> replies = new();
-        Receive<ReceiveTimeout>(_ => ReplyAndStop(_originalMessage.RequestId, replies));
+        Receive<ReceiveTimeout>(_ => ReplyAndStop(_originalMessage!.RequestId, replies));
         Receive<T>(msg =>
         {
             if (_refs.Remove(Sender))
