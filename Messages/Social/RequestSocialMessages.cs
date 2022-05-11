@@ -1,3 +1,5 @@
-﻿namespace Hafnia.Shared.Messages.Social;
+﻿using Hafnia.Shared.Messages.Interfaces;
 
-public record RequestSocialMessages(long RequestId) : Message(RequestId);
+namespace Hafnia.Shared.Messages.Social;
+
+public record RequestSocialMessages(long RequestId) : Message(RequestId), ISocialMessage;
