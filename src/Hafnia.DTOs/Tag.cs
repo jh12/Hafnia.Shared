@@ -4,5 +4,6 @@ public record Tag
 (
     string Id,
     string Name,
-    string[] ChildrenTags
+    string? Parent,
+    string[] Ancestors
 );
