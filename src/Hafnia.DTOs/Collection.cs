@@ -7,5 +7,6 @@ public record Collection
     string ThumbnailId,
     string[] IncludedTags,
     string[] ExcludedTags,
-    string[] Children
+    string[] Children,
+    bool IsRoot
 );
