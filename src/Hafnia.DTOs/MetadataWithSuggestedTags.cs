@@ -8,7 +8,7 @@ public record MetadataWithSuggestedTags
     string Title,
     string[] Tags,
     string[] SuggestedTags
-) : 
+) :
 Metadata
 (
     Id,
