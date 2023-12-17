@@ -18,8 +18,8 @@ public record MetadataSourceV2
 
 public record MetadataWithSourceV2
 (
-    string Id, 
-    string Title, 
-    string[] Tags, 
+    string Id,
+    string Title,
+    string[] Tags,
     MetadataSourceV2 Source
 ) : MetadataV2(Id, Title, Tags);
